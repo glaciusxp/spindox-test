@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
 
   user: UserModel = null;
   
+  // list of buttons/tabs
   readonly tabs: ActiveTab[]  = [
     'name',
     'email',
@@ -28,6 +29,7 @@ export class UserProfileComponent implements OnInit {
     'password'
   ];
 
+  // activeTab - default: 'name'
   activeTab: ActiveTab = 'name';
 
   constructor(private http: HttpClient) {}
@@ -36,14 +38,24 @@ export class UserProfileComponent implements OnInit {
     this._loadUser();
   }
 
+  // set activated tab on mouse hover on tab button
   onActivateTab(tab: ActiveTab): void {
     console.log('activeTab=' + tab);
     this.activeTab = tab;
   }
 
+  // load user using cors api
   private _loadUser(): void {
-    this.http.get<RandomUserModel>(this.apiUrl, {
-       headers: new HttpHeaders({'Access-Control-Allow-Origin': '*'})}).subscribe(
+    this.http.get<RandomUserModel>(
+      this.apiUrl,
+        {
+          headers: new HttpHeaders(
+            {
+              'Access-Control-Allow-Origin': '*'
+            }
+          )
+        }
+      ).subscribe(
       (response) => {
         console.log('User: ', response);
         if (response && response.results) {

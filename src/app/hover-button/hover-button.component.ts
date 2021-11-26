@@ -23,13 +23,16 @@ export class HoverButtonComponent implements OnInit {
     return this._tab;
   }
 
+  // Set button as selected
   @Input() selected: boolean = false;
 
+  // Set specific tab
   @Input() set tab(tab: ActiveTab) {
     this._tab = tab;
     this._mapIcon();
   }
 
+  // On mouse hover, emit tab name
   @Output() activate: EventEmitter<ActiveTab> = new EventEmitter<ActiveTab>();
 
   constructor() { }
@@ -40,6 +43,7 @@ export class HoverButtonComponent implements OnInit {
     this.activate.emit(this._tab);
   }
 
+  // map specific icon by tab name 
   private _mapIcon(): void {
       switch (this._tab) {
         case 'name':

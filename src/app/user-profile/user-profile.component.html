@@ -1,0 +1,49 @@
+<div class="flex-col flex-extend user-profile-container">
+    <header class="flex-col flex-extend-half">
+        <div class="img-box">
+            <ng-template [ngIf]="user" [ngIfElse]="notReady">
+                <img class="user-picture" [src]="user.picture.large" [alt]="user.name.title + ' ' + user.name.first + ' ' + user.name.last">
+            </ng-template>
+            <ng-template #notReady>
+                <em class="fas fa-user generic-picture"></em>
+            </ng-template>
+        </div>
+    </header>
+    <section class="flex-col flex-extend align-center">
+        <ng-container *ngIf="user" >
+            <div class="user-info flex-col align-center justify-center">
+                <ng-container *ngIf="activeTab === 'name'">
+                    <span class="label">Hi, my name is</span>
+                    <span class="value">{{user.name.first + ' ' + user.name.last}}</span>
+                </ng-container>
+                <ng-container *ngIf="activeTab === 'email'">
+                    <span class="label">My e-mail address is</span>
+                    <span class="value">{{user.email}}</span>
+                </ng-container>
+                <ng-container *ngIf="activeTab === 'birthday'">
+                    <span class="label">My birthday is</span>
+                    <span class="value">{{user.dob.date | date:'dd/MM/yyyy'}}</span>
+                </ng-container>
+                <ng-container *ngIf="activeTab === 'address'">
+                    <span class="label">My address is</span>
+                    <span class="value">{{user.location.street.number + ', ' + user.location.street.name}}</span>
+                </ng-container>
+                <ng-container *ngIf="activeTab === 'phone'">
+                    <span class="label">My phone number is</span>
+                    <span class="value">{{user.phone}}</span>
+                </ng-container>
+                <ng-container *ngIf="activeTab === 'password'">
+                    <span class="label">My password is</span>
+                    <span class="value">{{user.login.password}}</span>
+                </ng-container>
+            </div>
+            <div class="sxt-tab-bar" *ngIf="tabs">
+                <sxt-hover-button *ngFor="let item of tabs"
+                                  [tab]="item"
+                                  [selected]="activeTab === item"
+                                  (activate)="onActivateTab($event)"
+                ></sxt-hover-button>
+            </div>
+        </ng-container>
+    </section>
+</div>

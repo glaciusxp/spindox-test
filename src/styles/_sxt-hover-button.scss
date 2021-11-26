@@ -1,0 +1,39 @@
+.sxt-hover-button {
+    border: none;
+    color: $default-font-color;
+    font-size: 2.4rem;
+    background-color: $default-background-color;
+    outline: none;
+    box-shadow: none;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    transition: color .5s;
+
+    &.selected {
+        border-width: 3px 0 0 0;
+        border-color: $selected-color;
+        border-style: solid;
+        color: $selected-color;
+
+        &>.sxt-hover-button-icon {
+            margin-top: -3px;
+        }
+    }
+
+    .arrow-up {
+        position: absolute;
+        top: -10px;
+        left: calc(50% - 10px);
+        width: 0;
+        height: 0; 
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid $selected-color;
+    }
+}

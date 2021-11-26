@@ -1,0 +1,1 @@
+export type ActiveTab = 'name' | 'email' | 'birthday' | 'address' | 'phone' | 'password';

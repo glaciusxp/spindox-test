@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `<router-outlet></router-outlet>`,
+  host: {
+    '[class.flex-col]': 'true'
+  } 
 })
 export class AppComponent {
-  title = 'spindox-test';
+  title = 'Spindox Test - Andrea Persano';
+
+  constructor() {}
 }
